@@ -1,4 +1,4 @@
-# azure-vnet, virtual network appliance, local network gateway, bastion host
+# azure-vnet, virtual network gateway, local network gateway, bastion host
 
 This guide helps you to implement the a simulated corporate network connects to virtual WAN network shown [here](https://github.com/sree7k7/azure-vwan-hub-S2S-VPN-BGP). This IaC contains only On-prem side infra. The other part VWAN network IaC is [here](https://github.com/sree7k7/azure-vwan-hub-S2S-VPN-BGP).
 
