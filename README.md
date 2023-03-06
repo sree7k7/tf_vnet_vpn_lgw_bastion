@@ -35,4 +35,7 @@ variable "shared_key" {
 3. Update the parameter values and execute: *terraform apply*
 
 **Note**: If fails, try to execute: **terraform init -upgrade** on terminal and execute cmd: **terraform apply --auto-approve**.
-  
+4. Verify the connection:
+   - Navigate to Virtual Network Gateway
+   - Click: BGP peers status (shown in below pic)
+  ![diagram](/pic/BGP_peer_verify.png)
