@@ -32,5 +32,7 @@ variable "shared_key" {
    - terraform init
    - terraform plan
    - terraform apply
+3. Update the parameter values and execute: *terraform apply*
 
 **Note**: If fails, try to execute: **terraform init -upgrade** on terminal and execute cmd: **terraform apply --auto-approve**.
+  
