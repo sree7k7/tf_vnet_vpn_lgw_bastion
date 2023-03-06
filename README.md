@@ -2,7 +2,7 @@
 
 This guide helps you to implement the a simulated corporate network connects to virtual WAN network shown [here](https://github.com/sree7k7/azure-vwan-hub-S2S-VPN-BGP). This IaC contains only On-prem side infra. The other part VWAN network IaC is [here](https://github.com/sree7k7/azure-vwan-hub-S2S-VPN-BGP).
 
-![diagram](/pics/VWAN-S2S-VPN-BGP.png)
+![diagram](/pic/VWAN-S2S-VPN-BGP.png)
 
 ## Prerequsites
 - [terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
@@ -26,7 +26,7 @@ variable "shared_key" {
   default = "abc@143"
 }
 ```
-![diagram](/pics/virtual_hub_vpn_configuration.png)
+![diagram](/pic/virtual_hub_vpn_configuration.png)
 
 2. execute below commands in terminal:
    - terraform init
