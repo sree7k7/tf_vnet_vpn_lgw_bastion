@@ -36,6 +36,7 @@ variable "shared_key" {
 
 **Note**: If fails, try to execute: **terraform init -upgrade** on terminal and execute cmd: **terraform apply --auto-approve**.
 4. Verify the connection:
-   - Navigate to Virtual Network Gateway
+   - Navigate to Virtual Network Gateway.
    - Click: BGP peers status (shown in below pic)
   ![diagram](/pic/BGP_peer_verify.png)
+  - And navigate to connections and check status.
