@@ -40,7 +40,7 @@ variable "shared_key" {
    - Navigate to Virtual Network Gateway.
    - Click: BGP peers status (shown in below pic)
   ![diagram](/pic/BGP_peer_verify.png)
-  - And navigate to connections and check status.
+  - And navigate to **Connections** and check lgw status.
 
 5. Connect the VM using bastion host. 
    - username: demousr
