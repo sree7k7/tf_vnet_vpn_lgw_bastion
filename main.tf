@@ -81,7 +81,7 @@ resource "azurerm_public_ip" "public_ip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku = "Standard"
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 # Create network interface
 resource "azurerm_network_interface" "public_nic" {
@@ -140,7 +140,6 @@ resource "azurerm_virtual_machine_extension" "vm_extension_install_iis" {
 SETTINGS
 }
 
-
 ##create azure GatewaySubnet
 resource "azurerm_subnet" "vnet_gateway_subnet" {
   name                 = "GatewaySubnet"
@@ -153,7 +152,7 @@ resource "azurerm_public_ip" "GatewaySubnetPublicIp" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku = "Standard"
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 ##create azure virtual network gateway 
@@ -163,7 +162,7 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
   resource_group_name = azurerm_resource_group.rg.name
   type                = "VPN"
   vpn_type            = "RouteBased"
-  sku                 = "Standard"
+  sku                 = "VpnGw1AZ"
   enable_bgp          = true
   
   ip_configuration {
@@ -174,6 +173,12 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
   }
   bgp_settings {
     asn                           = 65020
+    # peering_addresses {
+    #   apipa_addresses       = "169.254.21.2"
+    #   # default_addresses     = 
+    #   # ip_configuration_name = 
+    #   # tunnel_ip_addresses   = 
+    # }
   }
 }
 
