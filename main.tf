@@ -80,6 +80,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "PublicIp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  sku = "Standard"
   allocation_method   = "Dynamic"
 }
 # Create network interface
@@ -151,6 +152,7 @@ resource "azurerm_public_ip" "GatewaySubnetPublicIp" {
   name                = "GatewaySubnetPublicIp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  sku = "Standard"
   allocation_method   = "Dynamic"
 }
 
@@ -186,6 +188,9 @@ resource "azurerm_local_network_gateway" "onpremise" {
       bgp_peering_address = var.bgp_peering_address
       peer_weight         = 0
     }
+  depends_on = [
+    azurerm_virtual_network_gateway.VirtualNetworkGateway
+  ]
 }
 
 # Site to site VPN
