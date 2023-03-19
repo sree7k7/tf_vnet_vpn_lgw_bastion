@@ -191,7 +191,7 @@ resource "azurerm_local_network_gateway" "onpremise" {
   bgp_settings {
       asn                 = var.asn
       bgp_peering_address = var.bgp_peering_address
-      peer_weight         = 0
+      # peer_weight         = 0
     }
   depends_on = [
     azurerm_virtual_network_gateway.VirtualNetworkGateway
@@ -208,6 +208,9 @@ resource "azurerm_virtual_network_gateway_connection" "vng_connection_to_lgw-onp
   local_network_gateway_id   = azurerm_local_network_gateway.onpremise.id
   shared_key = "abc@143"
   enable_bgp = true
+  depends_on = [
+    azurerm_local_network_gateway.onpremise
+  ]
 }
 
 # Azure Bastion host

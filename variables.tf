@@ -33,13 +33,13 @@ variable "bastion_subnet_address" {
   default = ["10.2.4.0/24"]
 }
 
-# local/destination network. Change details.
+# destination network. Change details.
 variable "vpn_gateway_pip" {
   default = "20.166.232.166"
   description = "Destination vpn gateway ip i,e virtual hub vpn gateway"
 }
 variable "asn" {
-  default = 65515
+  default = 65010
   description = "vhub vpn gateway asn"
 }
 variable "bgp_peering_address" {
