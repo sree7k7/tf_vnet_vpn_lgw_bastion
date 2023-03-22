@@ -183,8 +183,8 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
 }
 
 # Local network Gateway
-resource "azurerm_local_network_gateway" "onpremise" {
-  name                = "onpremise-details"
+resource "azurerm_local_network_gateway" "destination-network" {
+  name                = "destination-network"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   gateway_address     = var.vpn_gateway_pip
@@ -205,7 +205,7 @@ resource "azurerm_virtual_network_gateway_connection" "vng_connection_to_lgw-onp
   resource_group_name = azurerm_resource_group.rg.name
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.VirtualNetworkGateway.id
-  local_network_gateway_id   = azurerm_local_network_gateway.onpremise.id
+  local_network_gateway_id   = azurerm_local_network_gateway.destination-network.id
   shared_key = "abc@143"
   enable_bgp = true
   depends_on = [
