@@ -51,3 +51,8 @@ variable "shared_key" {
    - passowrd: Password@123
 
 6. Reachout the destination vm using private ip.
+
+## links
+
+- ssd
+- <https://learn.microsoft.com/en-us/azure/vpn-gateway/>>
