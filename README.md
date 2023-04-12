@@ -32,10 +32,11 @@ variable "shared_key" {
 ![diagram](/pic/virtual_hub_vpn_configuration.png)
 
 2. execute below commands in terminal:
-```
+
+```terraform
 terraform init
 terraform apply
-````
+```
 
 3. Update the parameter values and execute: *terraform apply*
 
