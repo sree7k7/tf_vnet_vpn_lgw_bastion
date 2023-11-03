@@ -1,5 +1,5 @@
 variable "resource_group_location" {
-  default     = "centralindia"
+  default     = "westeurope"
   description = "Location of the resource group."
 }
 
@@ -35,7 +35,7 @@ variable "bastion_subnet_address" {
 
 # destination network - Change details for local network.
 variable "vpn_gateway_pip" {
-  default = "20.105.123.40"
+  default = "51.145.141.237"
   description = "Destination vpn gateway ip i,e virtual hub vpn gateway"
 }
 variable "asn" {
@@ -43,7 +43,7 @@ variable "asn" {
   description = "vhub vpn gateway asn"
 }
 variable "bgp_peering_address" {
-  default = "10.5.0.12"
+  default = "10.101.22.254"
   description = "vhub vpn gateway Default BGP IP Address"
 }
 variable "shared_key" {

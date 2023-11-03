@@ -182,9 +182,9 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
   }
 }
 
-# Local network Gateway
-resource "azurerm_local_network_gateway" "vpn_site" {
-  name                = "vpn_site"
+## Local network Gateway
+resource "azurerm_local_network_gateway" "vpnsite" {
+  name                = "vpnsite"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   gateway_address     = var.vpn_gateway_pip
@@ -198,18 +198,18 @@ resource "azurerm_local_network_gateway" "vpn_site" {
   ]
 }
 
-# Site to site VPN
+# # Site to site VPN
 resource "azurerm_virtual_network_gateway_connection" "VGW_connection_to_lgw-onpremise" {
   name                = "VGW_connection_to_lgw-onpremise"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.VirtualNetworkGateway.id
-  local_network_gateway_id   = azurerm_local_network_gateway.vpn_site.id
-  shared_key = "abc@143"
+  local_network_gateway_id   = azurerm_local_network_gateway.vpnsite.id
+  shared_key = var.shared_key
   enable_bgp = true
   depends_on = [
-    azurerm_local_network_gateway.vpn_site
+    azurerm_local_network_gateway.vpnsite
   ]
 }
 
