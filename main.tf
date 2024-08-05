@@ -160,10 +160,11 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
   name                = "VirtualNetworkGateway"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  type                = "VPN"
+  type                = "Vpn"
   vpn_type            = "RouteBased"
-  sku                 = "VpnGw1AZ"
+  sku                 = "VpnGw2AZ"
   enable_bgp          = true
+  generation          = "Generation2"
   
   ip_configuration {
     name                          = "vnetGatewayConfig"
@@ -172,7 +173,8 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
     subnet_id                     = azurerm_subnet.vnet_gateway_subnet.id
   }
   bgp_settings {
-    asn                           = 65020
+    asn                           = 65040
+    # peer_weight                   = 50
     # peering_addresses {
     #   apipa_addresses       = "169.254.21.2"
     #   # default_addresses     = 
@@ -183,33 +185,33 @@ resource "azurerm_virtual_network_gateway" "VirtualNetworkGateway" {
 }
 
 ## Local network Gateway
-resource "azurerm_local_network_gateway" "vpnsite" {
-  name                = "vpnsite"
+resource "azurerm_local_network_gateway" "vpnsite_lgw" {
+  name                = "vpnsite_lgw"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   gateway_address     = var.vpn_gateway_pip
   bgp_settings {
       asn                 = var.asn
       bgp_peering_address = var.bgp_peering_address
-      # peer_weight         = 0
+      peer_weight         = 50
     }
   depends_on = [
     azurerm_virtual_network_gateway.VirtualNetworkGateway
   ]
 }
 
-# # Site to site VPN
-resource "azurerm_virtual_network_gateway_connection" "VGW_connection_to_lgw-onpremise" {
-  name                = "VGW_connection_to_lgw-onpremise"
+# # vpn connection
+resource "azurerm_virtual_network_gateway_connection" "siteconnection" {
+  name                = "siteconnection"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.VirtualNetworkGateway.id
-  local_network_gateway_id   = azurerm_local_network_gateway.vpnsite.id
+  local_network_gateway_id   = azurerm_local_network_gateway.vpnsite_lgw.id
   shared_key = var.shared_key
   enable_bgp = true
   depends_on = [
-    azurerm_local_network_gateway.vpnsite
+    azurerm_local_network_gateway.vpnsite_lgw
   ]
 }
 
